@@ -31,13 +31,6 @@ app.post('/test', function(req, res) {
     res.send('Post received.');
 })
 
-// logging function
-const logger = createLogger({
-    transports: [
-        new transports.File({ filename: 'logFile.log', level: 'info', format: format.combine(format.timestamp(), format.json()) })
-    ]
-})
-
 // Calculator function. No validation involved.
 app.get('/calc', function(req, res) {
     var one = parseInt(req.query.one);
@@ -65,6 +58,13 @@ app.get('/calc', function(req, res) {
             res.send("Sorry, there was an error.");
     }
 });
+
+// logging function
+const logger = createLogger({
+    transports: [
+        new transports.File({ filename: 'logFile.log', level: 'info', format: format.combine(format.timestamp(), format.json()) })
+    ]
+})
 
 // Set app to listen
 app.listen(port, () => {
